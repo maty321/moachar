@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loadout Výběr</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <nav>
+        <a href="#" id="add-tab" class="active">Přidat Loadout</a>
+        <a href="#" id="list-tab">Tvůj Loadout</a>
+    </nav>
+
+    <div class="content" id="add-movie">
+        <h2>Vyber si loadout</h2>
+        <div class="Z1">
+            <h2>Vyber si hlavní zbraň</h2>
+            <input type="radio" id="nerfka1" name="vehicle1" value="0.png" checked>
+            <label for="nerfka1">default - AK-47</label><br>
+            <input type="radio" id="nerfka2" name="vehicle1" value="1.png">
+            <label for="nerfka2"> M4A4</label><br>
+            <input type="radio" id="nerfka3" name="vehicle1" value="2.png">
+            <label for="nerfka3"> M4A1-S</label><br>
+        </div>
+
+        <h2>Vyber si sekundární zbraň</h2>
+        <div class="Z2">
+            <input type="radio" id="nerfka4" name="vehicle2" value="00.png" checked>
+            <label for="nerfka4">default - MP7</label><br>
+            <input type="radio" id="nerfka5" name="vehicle2" value="3.png">
+            <label for="nerfka5"> PP-Bizon</label><br>
+            <input type="radio" id="nerfka6" name="vehicle2" value="4.png">
+            <label for="nerfka6"> P90</label><br>
+        </div>
+
+        <h2>Vyber si pistoli</h2>
+        <div class="Z3">
+            <input type="radio" id="nerfka7" name="vehicle3" value="000.png" checked>
+            <label for="nerfka7">default - Glock-18</label><br>
+            <input type="radio" id="nerfka8" name="vehicle3" value="5.png">
+            <label for="nerfka8"> P250</label><br>
+            <input type="radio" id="nerfka9" name="vehicle3" value="6.png">
+            <label for="nerfka9"> Desert-eagle</label><br>
+        </div>
+
+        <button id="save-button">Uložit Loadout</button>
+    </div>
+
+    <div class="content hidden" id="movie-list">
+        <h1>Tvůj Loadout</h1>
+        <h3>Primary zbraň</h3>
+        <img src="0.png" alt="Primary Weapon">
+        <h3>Sekundární zbraň</h3>
+        <img src="3.png" alt="Secondary Weapon">
+        <h3>Pistole</h3>
+        <img src="6.png" alt="Sidearm">
+    </div>
+
+    <script>
+      
+        const saveButton = document.getElementById('save-button');
+
+        saveButton.addEventListener('click', () => {
+          
+            const primaryWeapon = document.querySelector('input[name="vehicle1"]:checked').value;
+            const secondaryWeapon = document.querySelector('input[name="vehicle2"]:checked').value;
+            const sidearmWeapon = document.querySelector('input[name="vehicle3"]:checked').value;
+
+            
+            const movieList = document.getElementById('movie-list');
+            movieList.querySelector('img:nth-of-type(1)').src = primaryWeapon; 
+            movieList.querySelector('img:nth-of-type(2)').src = secondaryWeapon; 
+            movieList.querySelector('img:nth-of-type(3)').src = sidearmWeapon; 
+            
+            document.getElementById('add-movie').classList.add('hidden');
+            movieList.classList.remove('hidden');
+
+            alert('Loadout byl uložen!');
+        });
+
+       
+        document.getElementById('add-tab').addEventListener('click', () => {
+            document.getElementById('add-movie').classList.remove('hidden');
+            document.getElementById('movie-list').classList.add('hidden');
+        });
+
+        document.getElementById('list-tab').addEventListener('click', () => {
+            document.getElementById('add-movie').classList.add('hidden');
+            document.getElementById('movie-list').classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
